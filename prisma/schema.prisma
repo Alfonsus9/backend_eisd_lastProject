@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id_user    Int      @id @default(autoincrement())
+  username   String   @unique
+  nip        String   @unique
+  password   String
+  role       Role
+  status     Boolean  @default(false)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("users")
+}
+
+model AreaParkir {
+  id_area         Int              @id @default(autoincrement())
+  name_area       String
+  location        String
+  kapasitas_total Int
+
+  created_at      DateTime         @default(now())
+  updated_at      DateTime         @updatedAt
+
+  log_parkir_logs LogParkirLog[]
+
+  @@map("area_parkir")
+}
+
+model LogParkirLog {
+  id_log            Int       @id @default(autoincrement())
+
+  id_area           Int
+  area              AreaParkir @relation(fields: [id_area], references: [id_area])
+
+  jenis_kendaraan   String
+
+  waktu_masuk       DateTime
+  waktu_keluar      DateTime?
+
+  created_at        DateTime @default(now())
+
+  @@map("log_parkir_logs")
+}
+
+model ViolationReport {
+  id_reports   Int      @id @default(autoincrement())
+
+  photo        String
+  location     String
+  description  String
+  status       String
+
+  created_at   DateTime @default(now())
+
+  @@map("violation_reports")
+}
+
+enum Role {
+  admin
+  petugas
+}
