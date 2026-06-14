@@ -7,3 +7,4 @@ api/auth/register
 public 
 /api/public/parking-area
 /api/public/parking-area/:id
+/api/violation-reports
