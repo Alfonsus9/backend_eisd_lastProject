@@ -20,7 +20,7 @@ async function main() {
       {
         username: "petugas_andi",
         nip: "199203152015031002",
-        password: hashedPassword,
+        password: "alfonsus123",
         role: "petugas",
         status: true,
       },

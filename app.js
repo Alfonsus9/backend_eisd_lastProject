@@ -7,6 +7,7 @@ const app = express();
 const authRoutes = require("./src/routes/authRoutes");
 const parkingRoutes = require("./src/routes/parkingRoutes");
 const violationReportRoutes = require("./src/routes/violationReportRoutes");
+const satpamRoutes = require("./src/routes/satpamRoutes");
 
 app.use(express.json());
 
@@ -29,6 +30,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/public", parkingRoutes);
 
 app.use("/api", violationReportRoutes);
+
+app.use("/petugas", satpamRoutes);
 
 app.use((err, req, res, next) => {
     if (err.message === "INVALID_FILE_TYPE") {
