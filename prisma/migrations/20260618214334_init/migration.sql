@@ -20,6 +20,7 @@ CREATE TABLE `area_parkir` (
     `name_area` VARCHAR(191) NOT NULL,
     `location` VARCHAR(191) NOT NULL,
     `kapasitas_total` INTEGER NOT NULL,
+    `photo` VARCHAR(191) NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
 

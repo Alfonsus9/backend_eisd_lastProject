@@ -69,7 +69,7 @@ async function deleteUser(id_user, currentUserId) {
     return prisma.user.delete({ where: { id_user: id } });
 }
 
-async function createParkingArea({ name_area, location, kapasitas_total }) {
+async function createParkingArea({ name_area, location, kapasitas_total, photo }) {
     if (!name_area || !location || kapasitas_total === undefined) {
         throw new Error("MISSING_FIELDS");
     }
@@ -84,7 +84,7 @@ async function createParkingArea({ name_area, location, kapasitas_total }) {
     }
 
     const area = await prisma.areaParkir.create({
-        data: { name_area, location, kapasitas_total: kapasitas },
+        data: { name_area, location, kapasitas_total: kapasitas, photo },
     });
     return area;
 }

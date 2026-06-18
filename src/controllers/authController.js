@@ -44,6 +44,14 @@ async function register(req, res) {
             data: null,
         });
     } catch (error) {
+        if (error.message === "USERNAME_ALREADY_EXISTS") {
+            return res.status(409).json({
+                status: false,
+                message: "username sudah digunakkan",
+                data: null,
+            });
+        }
+
         if (error.message === "NIP_ALREADY_EXISTS") {
             return res.status(409).json({
                 status: false,

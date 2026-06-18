@@ -138,11 +138,20 @@ async function createParkingArea(req, res) {
             });
         }
 
+        if (!req.file) {
+            return res.status(400).json({
+                status: false,
+                message: "Foto area parkir wajib dilampirkan",
+                data: null,
+            });
+        }
+
         try {
             const area = await adminService.createParkingArea({
                 name_area,
                 location,
                 kapasitas_total,
+                photo: req.file.filename,
             });
             return res.status(201).json({
                 status: true,

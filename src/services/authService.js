@@ -46,6 +46,16 @@ async function registerUser({
     password,
     role,
 }) {
+    const existingUsername = await prisma.user.findUnique({
+        where: {
+            username: name,
+        },
+    });
+
+    if (existingUsername) {
+        throw new Error("USERNAME_ALREADY_EXISTS");
+    }
+
     const existingUser = await findUserByNip(nip);
 
     if (existingUser) {

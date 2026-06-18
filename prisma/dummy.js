@@ -7,6 +7,7 @@ const prisma = new PrismaClient();
 async function main() {
   // ── 1. Users ───────────────────────────────────────────────────────────────
   const hashedPassword = await bcrypt.hash("password123", 10);
+  const hashedAndiPassword = await bcrypt.hash("alfonsus123", 10);
 
   await prisma.user.createMany({
     data: [
@@ -20,7 +21,7 @@ async function main() {
       {
         username: "petugas_andi",
         nip: "199203152015031002",
-        password: "alfonsus123",
+        password: hashedAndiPassword,
         role: "petugas",
         status: true,
       },
@@ -45,10 +46,10 @@ async function main() {
   // ── 2. Area Parkir ─────────────────────────────────────────────────────────
   await prisma.areaParkir.createMany({
     data: [
-      { name_area: "Parkir A", location: "Gedung Utama",     kapasitas_total: 100 },
-      { name_area: "Parkir B", location: "Gedung Serbaguna", kapasitas_total: 80  },
-      { name_area: "Parkir C", location: "Gedung Annex",     kapasitas_total: 60  },
-      { name_area: "Parkir D", location: "Basement Lt. 1",   kapasitas_total: 120 },
+      { name_area: "Parkir A", location: "Gedung Utama",     kapasitas_total: 100, photo: "dummy-parkir-a.jpg" },
+      { name_area: "Parkir B", location: "Gedung Serbaguna", kapasitas_total: 80,  photo: "dummy-parkir-b.jpg" },
+      { name_area: "Parkir C", location: "Gedung Annex",     kapasitas_total: 60,  photo: "dummy-parkir-c.jpg" },
+      { name_area: "Parkir D", location: "Basement Lt. 1",   kapasitas_total: 120, photo: "dummy-parkir-d.jpg" },
     ],
     skipDuplicates: true,
   });

@@ -35,6 +35,14 @@ async function requirePetugas(req, res, next) {
             });
         }
 
+        if (!user.status) {
+            return res.status(403).json({
+                status: false,
+                message: "Akun Anda telah dinonaktifkan, hubungi admin",
+                data: null,
+            });
+        }
+
         if (user.role !== "petugas") {
             return res.status(403).json({
                 status: false,
@@ -85,6 +93,14 @@ async function requireAdmin(req, res, next) {
             return res.status(401).json({
                 status: false,
                 message: "Token tidak valid atau sesi telah berakhir",
+                data: null,
+            });
+        }
+
+        if (!user.status) {
+            return res.status(403).json({
+                status: false,
+                message: "Akun Anda telah dinonaktifkan, hubungi admin",
                 data: null,
             });
         }
