@@ -12,13 +12,15 @@ const adminRoutes = require("./src/routes/adminRoutes");
 
 app.use(express.json());
 
-app.use(
-    cors({
-        origin: process.env.CLIENT_URL || "http://localhost:3000",
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders: ["Content-Type", "Authorization"],
-    })
-);
+// app.use(
+//     cors({
+//         origin: process.env.CLIENT_URL || "http://localhost:3000",
+//         methods: ["GET", "POST", "PUT", "DELETE"],
+//         allowedHeaders: ["Content-Type", "Authorization"],
+//     })
+// );
+
+app.use(cors());
 
 app.use(
     "/uploads",
